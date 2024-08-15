@@ -1,8 +1,8 @@
 import 'package:bookly/features/home/domain/entities/book_entity.dart';
 
+import 'AccessInfo.dart';
 import 'VolumeInfo.dart';
 import 'SaleInfo.dart';
-import 'AccessInfo.dart';
 import 'SearchInfo.dart';
 
 class BookModel extends BookEntity {
