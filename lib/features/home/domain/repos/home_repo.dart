@@ -5,6 +5,6 @@ import '../entities/book_entity.dart';
 
 abstract class HomeRepo {
 Future<Either<FailureServer,List<BookEntity>>>fetchFeaturedBooks();
-Future<List<BookEntity>>fetchNewestBooks();
+Future<Either<FailureServer,List<BookEntity>>>fetchNewestBooks();
 
 }
