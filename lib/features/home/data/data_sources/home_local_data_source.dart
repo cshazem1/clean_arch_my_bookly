@@ -18,7 +18,6 @@ return box.values.toList();
   @override
   List<BookEntity> fetchNewestBooks() {
     var box=Hive.box<BookEntity>(KNewestFeaturedBox);
-
     return box.values.toList();
   }
 
