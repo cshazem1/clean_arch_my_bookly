@@ -4,51 +4,46 @@ import 'package:bookly/features/home/data/data_sources/home_remote_data_source.d
 import 'package:bookly/features/home/domain/entities/book_entity.dart';
 import 'package:bookly/features/home/domain/repos/home_repo.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 
-class HomeRepoImpl extends HomeRepo{
- final HomeRemoteDataSource homeRemoteDataSource;
-final  HomeLocalDataSource homeLocalDataSource;
+class HomeRepoImpl extends HomeRepo {
+  final HomeRemoteDataSource homeRemoteDataSource;
+  final HomeLocalDataSource homeLocalDataSource;
 
-  HomeRepoImpl({required this.homeRemoteDataSource,required this.homeLocalDataSource});
+  HomeRepoImpl(
+      {required this.homeRemoteDataSource, required this.homeLocalDataSource});
   @override
-  Future<Either<FailureServer, List<BookEntity>>> fetchFeaturedBooks() async {
+  Future<Either<Failure, List<BookEntity>>> fetchFeaturedBooks() async {
+    try {
+      List<BookEntity> books;
+      books = homeLocalDataSource.fetchFeaturedBooks();
+      if (books.isNotEmpty) {
+        return right(books);
+      }
 
-try {
-  var localBooks=  homeLocalDataSource.fetchFeaturedBooks();
-  if(localBooks.isNotEmpty)
-  {  return right(localBooks);}
+      books = await homeRemoteDataSource.fetchFeaturedBooks();
+      return right(books);
+    }  catch (e) {
+      if(e is DioError) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(e.toString()));
 
-  var remoteBooks= await  homeRemoteDataSource.fetchFeaturedBooks();
- return right(remoteBooks);
-
-} on Exception catch (e) {
-  return left(FailureServer(message: e.toString()));
-
-}
-
+    }
   }
 
   @override
-  Future<Either<FailureServer, List<BookEntity>>> fetchNewestBooks() async {
-try {
-  var localBooks= homeLocalDataSource.fetchNewestBooks();
-  if(localBooks.isNotEmpty)
-    {
-      return right(localBooks);
+  Future<Either<Failure, List<BookEntity>>> fetchNewestBooks() async {
+    try {
+      List<BookEntity>  books;
+      var localBooks = homeLocalDataSource.fetchNewestBooks();
+      if (localBooks.isNotEmpty) {
+        return right(localBooks);
+      }
+      books= await homeRemoteDataSource.fetchNewestBooks();
+      return right(books);
+    } catch (e) {
+      return left(ServerFailure(e.toString()));
     }
-  var remoteBooks=await homeRemoteDataSource.fetchNewestBooks();
-return right(remoteBooks);
-
-}
-catch (e)
-    {
-      return left(FailureServer(message: e.toString()));
-    }
-
   }
-
-
-
-
-
 }

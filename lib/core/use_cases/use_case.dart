@@ -3,5 +3,5 @@ import 'package:dartz/dartz.dart';
 import '../errors/failure_Server.dart';
 
 abstract class UseCase<Type,Param>{
-  Future<Either<FailureServer,Type>>call([Param p]);
+  Future<Either<Failure,Type>>call([Param p]);
 }

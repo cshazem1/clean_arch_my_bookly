@@ -5,7 +5,7 @@ import '../../../../core/errors/failure_Server.dart';
 import '../entities/book_entity.dart';
 
 abstract class HomeRepo {
-Future<Either<FailureServer,List<BookEntity>>>fetchFeaturedBooks();
-Future<Either<FailureServer,List<BookEntity>>>fetchNewestBooks();
+Future<Either<Failure,List<BookEntity>>>fetchFeaturedBooks();
+Future<Either<Failure,List<BookEntity>>>fetchNewestBooks();
 
 }
