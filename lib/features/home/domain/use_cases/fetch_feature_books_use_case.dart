@@ -1,5 +1,5 @@
 import 'package:bookly/features/home/domain/repos/home_repo.dart';
-import 'package:either_dart/either.dart';
+import 'package:dartz/dartz.dart';
 
 import '../../../../core/errors/failure_Server.dart';
 import '../../../../core/use_cases/use_case.dart';

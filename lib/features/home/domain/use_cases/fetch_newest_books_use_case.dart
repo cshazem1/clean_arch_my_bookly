@@ -3,7 +3,7 @@ import 'package:bookly/core/use_cases/use_case.dart';
 import 'package:bookly/features/home/domain/entities/book_entity.dart';
 import 'package:bookly/features/home/domain/repos/home_repo.dart';
 import 'package:bookly/features/home/domain/use_cases/fetch_feature_books_use_case.dart';
-import 'package:either_dart/src/either.dart';
+import 'package:dartz/dartz.dart';
 
 class FetchNewestBooksUseCase extends UseCase<List<BookEntity>,NoParam>{
   HomeRepo homeRepo;
