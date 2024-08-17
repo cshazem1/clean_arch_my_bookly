@@ -1,4 +1,5 @@
 import 'package:bookly/core/utils/app_roter.dart';
+import 'package:bookly/core/utils/simple_bloc_observer.dart';
 import 'package:bookly/features/home/domain/entities/book_entity.dart';
 import 'package:bookly/features/home/domain/repos/home_repo.dart';
 import 'package:bookly/features/home/domain/use_cases/fetch_feature_books_use_case.dart';
@@ -19,6 +20,7 @@ void main() async {
   Hive.registerAdapter(BookEntityAdapter());
   await Hive.openBox<BookEntity>(KFeaturedBox);
   await Hive.openBox<BookEntity>(KNewestFeaturedBox);
+  Bloc.observer=SimpleBlocObserver();
   runApp(const Bookly());
 }
 
