@@ -11,7 +11,7 @@ abstract class HomeRemoteDataSource {
 
 class HomeRemoteSourceImpl extends HomeRemoteDataSource {
   final ApiService apiService;
-  HomeRemoteSourceImpl(this.apiService);
+  HomeRemoteSourceImpl({required this.apiService});
   @override
   Future<List<BookEntity>> fetchFeaturedBooks() async {
     var result = await apiService.get(
