@@ -1,3 +1,4 @@
+import 'package:bookly/features/home/domain/entities/book_entity.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/styles.dart';
@@ -44,7 +45,7 @@ class SearchResultListView extends StatelessWidget {
               return const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30.0),
 
-                child: BookListViewItem(),
+                child:SizedBox() /*BookListViewItem()*/,
               );
             },
            ),

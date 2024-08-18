@@ -5,6 +5,12 @@ sealed class FetchNewestFeaturedBooksState {}
 
 final class FetchNewestFeaturedBooksInitial extends FetchNewestFeaturedBooksState {}
 final class FetchNewestFeaturedBooksLoading extends FetchNewestFeaturedBooksState {}
+final class FetchNewestFeaturedBooksPaginationLoading extends FetchNewestFeaturedBooksState {}
+final class FetchNewestFeaturedBooksPaginationFailure extends FetchNewestFeaturedBooksState {
+  String error;
+  FetchNewestFeaturedBooksPaginationFailure({required this.error});
+}
+
 final class FetchNewestFeaturedBooksSuccess extends FetchNewestFeaturedBooksState {
   List<BookEntity>books;
   FetchNewestFeaturedBooksSuccess({required this.books});
