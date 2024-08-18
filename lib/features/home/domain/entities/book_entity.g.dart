@@ -22,7 +22,7 @@ class BookEntityAdapter extends TypeAdapter<BookEntity> {
       authorName: fields[3] as String?,
       rating: fields[4] as num?,
       price: fields[5] as num?,
-      bookId: fields[0] as int?,
+      bookId: fields[0] as String?,
     );
   }
 

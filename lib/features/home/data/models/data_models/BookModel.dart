@@ -16,21 +16,31 @@ class BookModel extends BookEntity {
     this.accessInfo,
     this.searchInfo,
   }) : super(
-            bookId: int.parse(id!),
-            image: volumeInfo!.imageLinks!.thumbnail,
+            bookId: id,
+            image: volumeInfo!.imageLinks?.thumbnail,
             authorName: volumeInfo.authors!.first,
             price: 0,
-            rating: num.parse(volumeInfo.maturityRating!),
+            rating: volumeInfo.averageRating,
             title: volumeInfo.title);
 
-
   factory BookModel.fromJson(dynamic json) {
-   return BookModel(kind: json['kind'],id:json['id'],etag:json['etag'] ,saleInfo:  json['saleInfo'] != null ? SaleInfo.fromJson(json['saleInfo']) : null
-       ,volumeInfo: json['volumeInfo'] != null? VolumeInfo.fromJson(json['volumeInfo']): null,accessInfo: json['accessInfo'] != null
-  ? AccessInfo.fromJson(json['accessInfo'])
-      : null,searchInfo:  json['searchInfo'] != null
-  ? SearchInfo.fromJson(json['searchInfo'])
-      : null,selfLink: json['selfLink'] );
+    return BookModel(
+        kind: json['kind'],
+        id: json['id'],
+        etag: json['etag'],
+        saleInfo: json['saleInfo'] != null
+            ? SaleInfo.fromJson(json['saleInfo'])
+            : null,
+        volumeInfo: json['volumeInfo'] != null
+            ? VolumeInfo.fromJson(json['volumeInfo'])
+            : null,
+        accessInfo: json['accessInfo'] != null
+            ? AccessInfo.fromJson(json['accessInfo'])
+            : null,
+        searchInfo: json['searchInfo'] != null
+            ? SearchInfo.fromJson(json['searchInfo'])
+            : null,
+        selfLink: json['selfLink']);
   }
   String? kind;
   String? id;

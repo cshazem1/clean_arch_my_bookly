@@ -15,7 +15,8 @@ class VolumeInfo {
       this.pageCount, 
       this.printType, 
       this.categories, 
-      this.maturityRating, 
+      this.maturityRating,
+    this.averageRating,
       this.allowAnonLogging, 
       this.contentVersion, 
       this.panelizationSummary, 
@@ -42,6 +43,8 @@ class VolumeInfo {
     printType = json['printType'];
     categories = json['categories'] != null ? json['categories'].cast<String>() : [];
     maturityRating = json['maturityRating'];
+    averageRating = json['averageRating']??0;
+
     allowAnonLogging = json['allowAnonLogging'];
     contentVersion = json['contentVersion'];
     panelizationSummary = json['panelizationSummary'] != null ? PanelizationSummary.fromJson(json['panelizationSummary']) : null;
@@ -51,6 +54,7 @@ class VolumeInfo {
     infoLink = json['infoLink'];
     canonicalVolumeLink = json['canonicalVolumeLink'];
   }
+  num?averageRating;
   String? title;
   List<String>? authors;
   String? publisher;
@@ -88,6 +92,8 @@ class VolumeInfo {
     map['printType'] = printType;
     map['categories'] = categories;
     map['maturityRating'] = maturityRating;
+    map['averageRating'] = averageRating;
+
     map['allowAnonLogging'] = allowAnonLogging;
     map['contentVersion'] = contentVersion;
     if (panelizationSummary != null) {
